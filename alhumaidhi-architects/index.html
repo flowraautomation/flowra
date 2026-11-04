@@ -433,7 +433,7 @@ S['plan'] = (o) => `<section class="pad wrap block plan" id="plan"><div class="h
 S['services'] = () => `<section class="pad wrap block" id="services"><div class="head"><span class="lbl">${STR.services}</span><span class="lbl">${CFG.services.length} ${STR.disc}</span></div>
   <div class="svc">${CFG.services.map((s,i)=>`<div class="fade" style="transition-delay:${i*.07}s"><i>${pad2(i+1)}</i><h4>${s[0]}</h4><p>${s[1]}</p></div>`).join('')}</div></section>`;
 S['film'] = (o) => `<section class="film wrap block" id="film"><div class="head"><span class="lbl">${o.title||STR.film}</span><span class="lbl">${CFG.short}</span></div>
-  <div class="frame" id="filmframe"><video id="filmv" src="${o.src}" poster="${IMG(0)}" autoplay muted loop playsinline preload="metadata"></video><button class="snd" id="snd" aria-pressed="false">${LANG==='ar'?'🔊 شغّل الصوت':'🔊 Sound on'}</button></div></section>`;
+  <div class="frame" id="filmframe"><video id="filmv" src="${o.src}" poster="${IMG(0)}" autoplay muted loop playsinline preload="metadata"></video></div></section>`;
 S['wall'] = (o) => `<section class="wall3d wrap block" id="wall"><div class="head"><span class="lbl">${o.title||STR.wall}</span><span class="lbl">${o.count||20} ${STR.projects}</span></div>
   <div class="stage"><div class="grid" id="wallgrid">${Array.from({length:o.count||20},(_,i)=>`<div style="background-image:url(img/p${pad2(i+1)}.jpg)"></div>`).join('')}</div></div></section>`;
 S['compare'] = (o) => `<section class="cmp pad wrap block" id="compare"><div class="head"><span class="lbl">${STR.cmp}</span><span class="lbl">${STR.cmpsub}</span></div>
