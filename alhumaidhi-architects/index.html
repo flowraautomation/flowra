@@ -106,7 +106,8 @@ nav{transition:background .4s,color .4s}
 /* villa build (scroll-driven, reel style) */
 .vb{position:relative;height:620vh}
 .vb .pin{position:sticky;top:0;height:100svh;overflow:hidden;background:radial-gradient(130% 100% at 50% 32%,color-mix(in srgb,var(--bg) 60%,#fff) 0%,var(--bg) 58%,color-mix(in srgb,var(--bg) 92%,#000) 100%)}
-.vb .stg{position:absolute;inset:0;display:grid;place-items:center}
+.vb .stg{position:absolute;inset:0}
+.vb canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .vb svg{width:min(66vw,1080px);max-height:78svh;height:auto;display:block;will-change:transform}
 .vb .lst{position:absolute;z-index:3;top:clamp(96px,15vh,150px);inset-inline-start:var(--gl);display:flex;flex-direction:column;gap:clamp(7px,1.3vh,13px);margin:0;padding:0}
 .vb .lst li{list-style:none;display:flex;align-items:center;gap:11px;opacity:.45;transition:opacity .55s}
@@ -405,24 +406,7 @@ S['hero-card'] = () => `<section class="h-card" id="hero">
   <div class="card2"><div class="lbl" style="color:var(--accent)">${CFG.eyebrow}</div><h1 class="disp">${CFG.headline.join('<br>')}</h1><p>${CFG.tagline}</p>
   <div class="btns">${CFG.whatsapp?`<a class="p" href="https://wa.me/${CFG.whatsapp}" target="_blank" rel="noopener">${STR.wa}</a>`:''}<a href="#gallery">${CFG.seeWork||'View projects'}</a></div>
   ${CFG.mini?`<div class="mini">${CFG.mini.map(m=>`<div><b>${m[0]}</b><span>${m[1]}</span></div>`).join('')}</div>`:''}</div></section>`;
-S['build'] = () => `<section class="vb" id="build"><div class="pin"><div class="stg"><svg viewBox="0 0 900 560" id="vbsvg" aria-hidden="true"><defs>
-<linearGradient id="vbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aec4ba"/><stop offset="1" stop-color="#85a393"/></linearGradient>
-<linearGradient id="vbr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#efe6d2"/><stop offset="1" stop-color="#e3d5bb"/></linearGradient>
-<linearGradient id="vbs" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d7c6a4"/><stop offset="1" stop-color="#cbb891"/></linearGradient>
-<linearGradient id="vbl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d2cbb8"/><stop offset="1" stop-color="#bbb299"/></linearGradient>
-<filter id="vbsoft"><feGaussianBlur stdDeviation="9"/></filter></defs>
-<ellipse id="vb-shadow" cx="450" cy="474" rx="300" ry="20" fill="#9a8f73" opacity="0" filter="url(#vbsoft)"/>
-<line x1="110" y1="464" x2="790" y2="464" stroke="#d9d4c6" stroke-width="2"/>
-<g id="vb-sketch" fill="none" stroke="#b3a689" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="3 7" opacity="0"><path d="M300 464 V250 H600 V464"/><path d="M335 250 V168 H565 V250"/><line x1="300" y1="332" x2="600" y2="332"/><line x1="410" y1="464" x2="410" y2="250"/><line x1="500" y1="464" x2="500" y2="250"/></g>
-<g id="vb-palms" opacity="0"><g transform="translate(150 464)"><rect x="-4" y="-120" width="8" height="120" rx="4" fill="#7c6a4a"/><g fill="#3e7a52"><path d="M0 -120 C -40 -142 -66 -138 -80 -120 C -56 -130 -26 -128 0 -120Z"/><path d="M0 -120 C 40 -142 66 -138 80 -120 C 56 -130 26 -128 0 -120Z"/><path d="M0 -120 C -28 -164 -24 -192 -6 -206 C -12 -176 -6 -146 0 -120Z"/><path d="M0 -120 C 28 -164 24 -192 6 -206 C 12 -176 6 -146 0 -120Z"/><path d="M0 -120 C -58 -124 -80 -110 -90 -92 C -64 -108 -32 -116 0 -120Z"/><path d="M0 -120 C 58 -124 80 -110 90 -92 C 64 -108 32 -116 0 -120Z"/></g></g>
-<g transform="translate(748 464)"><rect x="-4" y="-104" width="8" height="104" rx="4" fill="#7c6a4a"/><g fill="#4a865d"><path d="M0 -104 C -36 -124 -62 -120 -76 -104 C -52 -114 -24 -112 0 -104Z"/><path d="M0 -104 C 36 -124 62 -120 76 -104 C 52 -114 24 -112 0 -104Z"/><path d="M0 -104 C -24 -144 -20 -170 -4 -184 C -10 -154 -4 -126 0 -104Z"/><path d="M0 -104 C 24 -144 20 -170 4 -184 C 10 -154 4 -126 0 -104Z"/><path d="M0 -104 C -52 -108 -72 -96 -82 -78 C -58 -94 -28 -100 0 -104Z"/><path d="M0 -104 C 52 -108 72 -96 82 -78 C 58 -94 28 -100 0 -104Z"/></g></g></g>
-<g id="vb-hedge" opacity="0"><rect x="296" y="448" width="310" height="18" rx="9" fill="#3e7a52"/><rect x="296" y="444" width="310" height="8" rx="4" fill="#4a865d"/></g>
-<rect id="vb-found" x="292" y="462" width="320" height="0" fill="url(#vbl)"/>
-<rect id="vb-gwall" x="300" y="464" width="300" height="0" fill="url(#vbr)"/><rect id="vb-gstone" x="300" y="464" width="40" height="0" fill="url(#vbs)"/>
-<rect id="vb-uwall" x="335" y="332" width="230" height="0" fill="url(#vbr)"/><rect id="vb-ustone" x="525" y="332" width="40" height="0" fill="url(#vbs)"/>
-<g id="vb-roof" opacity="0"><rect x="318" y="238" width="300" height="14" rx="2" fill="url(#vbl)"/><rect x="318" y="238" width="300" height="4" fill="#ddd4c0"/></g>
-<g id="vb-finish" opacity="0"><rect class="vbwin" x="356" y="356" width="120" height="100" fill="url(#vbg)"/><line x1="416" y1="356" x2="416" y2="456" stroke="#eadfce" stroke-width="2.5"/><line x1="356" y1="406" x2="476" y2="406" stroke="#eadfce" stroke-width="2.5"/><rect x="498" y="392" width="52" height="72" fill="#334037"/><rect x="498" y="392" width="52" height="5" fill="#49574c"/><rect class="vbwin" x="352" y="274" width="74" height="46" fill="url(#vbg)"/><rect class="vbwin" x="446" y="274" width="74" height="46" fill="url(#vbg)"/><g stroke="#b49b6b" stroke-width="1.8" opacity=".9"><line x1="525" y1="274" x2="565" y2="274"/><line x1="525" y1="288" x2="565" y2="288"/><line x1="525" y1="302" x2="565" y2="302"/><line x1="525" y1="316" x2="565" y2="316"/><line x1="536" y1="268" x2="536" y2="322"/><line x1="554" y1="268" x2="554" y2="322"/></g></g>
-<g id="vb-path" opacity="0"><path d="M498 464 L480 540 L568 540 L540 464 Z" fill="#e7ddc8"/></g></svg></div>
+S['build'] = () => `<section class="vb" id="build"><div class="pin"><div class="stg"><canvas id="vbc" aria-label="Villa being built, from empty plot to handover"></canvas></div>
   <ul class="lst" id="vblst">${CFG.build.map((s,i)=>`<li><span class="d"></span><span class="t">${s[1]}</span></li>`).join('')}</ul>
   <div class="wd"><span class="n" id="vbn"></span><h2 id="vbt"></h2><span class="s" id="vbs2"></span></div>
   <div class="bar"><i id="vbbar"></i></div><div class="hint" id="vbhint"><span>${CFG.buildHint||'Scroll'}</span><i></i></div></div></section>`;
@@ -554,31 +538,30 @@ if ($('cmpr')) { const box = $('cmpbox'), rng = $('cmpr'); let touched = false;
     const step = t => { if (touched) return; const k = Math.min(1, (t - t0) / 2600); const v = 50 + Math.sin(k * Math.PI * 2) * 38 * (1 - k*.3); set(v); rng.value = v; if (k < 1) requestAnimationFrame(step); else { set(50); rng.value = 50; } };
     requestAnimationFrame(step); } }, {threshold:.5}); cio.observe(box); }
 
-/* ---------- villa build on scroll ---------- */
+/* ---------- villa build: one continuous shot, scrubbed by scroll ---------- */
 if ($('build')) (function(){
-  const sc=$('build'), svg=$('vbsvg'), g=id=>document.getElementById('vb-'+id), li=[...$('vblst').children];
-  const clampv=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)), seg=(p,a,b)=>clampv((p-a)/(b-a)), eOut=t=>1-Math.pow(1-t,3), eIO=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2, lerp=(a,b,t)=>a+(b-a)*t;
-  const ranges=[[0,.14],[.14,.30],[.30,.54],[.54,.66],[.66,.80],[.80,1.01]]; let cur=-1;
+  const sc=$('build'), cv=$('vbc'), ctx=cv.getContext('2d'), li=[...$('vblst').children], N=CFG.buildFrames||160, frames=new Array(N);
+  const src=i=>`img/build/f${String(i).padStart(3,'0')}.webp`;
+  const order=[0,N-1]; for(let step=64;step>=1;step=Math.floor(step/2)) for(let i=0;i<N;i+=step) if(!order.includes(i)) order.push(i);
+  order.forEach(i=>{ const im=new Image(); im.decoding='async'; im.src=src(i); im.onload=()=>{ frames[i]=im; if(Math.abs(i-lastIdx)<3) draw(true); }; });
+  const clampv=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+  const ranges=[[0,.1],[.1,.24],[.24,.36],[.36,.6],[.6,.82],[.82,1.01]]; let cur=-1, lastIdx=-1, prog=0;
   const setStage=i=>{ if(i===cur) return; cur=i; const s=CFG.build[i]; ['vbn','vbt','vbs2'].forEach(id=>$(id).style.opacity=0);
     setTimeout(()=>{ $('vbn').textContent=s[0]; $('vbt').textContent=s[1]; $('vbs2').textContent=s[2]; ['vbn','vbt','vbs2'].forEach(id=>$(id).style.opacity=1); },150);
     li.forEach((el,k)=>el.classList.toggle('on',k===i)); };
-  const render=p=>{ $('vbbar').style.width=(p*100).toFixed(2)+'%'; $('vbhint').style.opacity=p>.02?0:1;
-    let si=0; ranges.forEach((r,i)=>{ if(p>=r[0]) si=i; }); setStage(si);
-    const z=lerp(.96,1.05,eOut(clampv(p/.95))), rtl=document.documentElement.dir==='rtl', sh=innerWidth>820?(rtl?-14:14):0;
-    svg.style.transform=`translateX(${sh}%) scale(${z.toFixed(3)})`;
-    g('sketch').style.opacity=p<.2?(eOut(seg(p,0,.06))*(1-seg(p,.14,.2))).toFixed(3):0;
-    const f=eOut(seg(p,.14,.27)); g('found').setAttribute('height',(f*18).toFixed(1));
-    g('shadow').setAttribute('opacity',(.16*seg(p,.14,.55)).toFixed(3));
-    const gh=eIO(seg(p,.27,.44))*132; ['gwall','gstone'].forEach(k=>{ g(k).setAttribute('height',gh.toFixed(1)); g(k).setAttribute('y',(464-gh).toFixed(1)); });
-    const uh=eIO(seg(p,.40,.56))*94; ['uwall','ustone'].forEach(k=>{ g(k).setAttribute('height',uh.toFixed(1)); g(k).setAttribute('y',(332-uh).toFixed(1)); });
-    const r=eOut(seg(p,.54,.66)); g('roof').style.opacity=r.toFixed(3); g('roof').setAttribute('transform',`translate(0 ${lerp(-34,0,r).toFixed(1)})`);
-    g('finish').style.opacity=eOut(seg(p,.64,.80)).toFixed(3);
-    const l=eOut(seg(p,.80,.93)); g('palms').style.opacity=l.toFixed(3); g('palms').style.transform=`translateY(${lerp(14,0,l).toFixed(1)}px)`; g('hedge').style.opacity=l.toFixed(3); g('path').style.opacity=eOut(seg(p,.82,.93)).toFixed(3);
-    const h=eOut(seg(p,.90,1)); document.querySelectorAll('.vbwin').forEach(w=>w.setAttribute('fill',h>.3?'#e9cf93':'url(#vbg)')); };
+  const nearest=i=>{ for(let d=0;d<N;d++){ if(frames[i-d]) return frames[i-d]; if(frames[i+d]) return frames[i+d]; } return null; };
+  function size(){ const r=cv.getBoundingClientRect(), dpr=Math.min(devicePixelRatio||1,2); cv.width=Math.round(r.width*dpr); cv.height=Math.round(r.height*dpr); draw(true); }
+  function draw(force){ const idx=Math.round(prog*(N-1)); if(!force && idx===lastIdx) return; lastIdx=idx; const im=frames[idx]||nearest(idx); if(!im) return;
+    const cw=cv.width, ch=cv.height, mobile=cw/ch<1; ctx.fillStyle=getComputedStyle(document.body).backgroundColor; ctx.fillRect(0,0,cw,ch);
+    let sc2=mobile? (cw/1600)*1.55 : Math.min(cw/1600, ch/900)*.94; const w=1600*sc2, h=900*sc2;
+    const rtl=document.documentElement.dir==='rtl', off=mobile?0:(rtl?-.16:.16)*cw;
+    ctx.drawImage(im,(cw-w)/2+off,(ch-h)/2+(mobile?-ch*.08:ch*.02),w,h); }
   let target=0,c=0,tick=false;
-  const loop=()=>{ c+=(target-c)*.1; if(Math.abs(target-c)<.0004) c=target; render(c); if(Math.abs(target-c)>=.0004) requestAnimationFrame(loop); else tick=false; };
+  const loop=()=>{ c+=(target-c)*.12; if(Math.abs(target-c)<.0005) c=target; prog=c; $('vbbar').style.width=(c*100).toFixed(2)+'%'; $('vbhint').style.opacity=c>.02?0:1;
+    let si=0; ranges.forEach((r,i)=>{ if(c>=r[0]) si=i; }); setStage(si); draw(false);
+    if(Math.abs(target-c)>=.0005) requestAnimationFrame(loop); else tick=false; };
   const compute=()=>{ const r=sc.getBoundingClientRect(), tot=sc.offsetHeight-innerHeight; target=tot>0?clampv(-r.top,0,tot)/tot:0; if(!tick){ tick=true; requestAnimationFrame(loop); } };
-  addEventListener('scroll',compute,{passive:true}); addEventListener('resize',compute); render(0); compute();
+  addEventListener('scroll',compute,{passive:true}); addEventListener('resize',size); size(); compute();
 })();
 /* ---------- table filters ---------- */
 if ($('filters')) $('filters').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return;
